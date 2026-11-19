@@ -1,0 +1,90 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks,pdfusetitle]{hyperref}
+\newtheorem{theorem}{Theorem}
+\title{Pair density matrices and axial helicity for quantum bond phonons on cylinders}
+\author{Davis Rens, SuperMatics Inc., ORCID 0000-0001-5839-5197}
+\date{}
+\newcommand{\LINEARTHREEDOI}{https://doi.org/10.5281/zenodo.24369897}
+\newcommand{\LINEARTHREESUPPDOI}{https://doi.org/10.5281/zenodo.24369899}
+\newcommand{\LINEARTHREEREPO}{https://github.com/SuperMatics-Inc/quasi1d-phonon-pair-decay}
+\begin{document}
+\maketitle
+\begin{abstract}
+For the spinful bond Su--Schrieffer--Heeger Hamiltonian on a finite-width cylinder at positive temperature, the electronic two-particle density matrix has a length-uniform operator-norm bound and the axial isothermal helicity vanishes exponentially with length. The constants are explicit, uniform in the phonon energy and valid in every canonical sector. The proof uses a complex charge gauge; a Gaussian interpolation controls its pressure cost despite the unbounded quantum bond coordinate. The density-coupled Holstein model follows as a simpler case. The bounds are not a square-lattice BKT estimate.
+\end{abstract}
+
+\section{Statement and context}
+Take $L\ge3$ periodic columns, with $W$ sites in each column, one axial edge per site to its counterpart in the next column, and transverse hopping within columns. The two spin species have real hopping $-t$ at zero flux, with $t>0$. A neutral oscillator of energy $\Omega>0$ on each bond contributes $b_eB_e$, with $b_e=FX_e$, $U=F^2/K>0$, and $B_e$ the spin-summed Hermitian hopping. The SSH flux enters both bare and oscillator-modulated hopping. Holstein instead puts $b_i n_i$ on sites. There are no direct electron interactions. Define $\tau=k_BT$, $\beta=1/\tau$, and
+\[
+ E=t+2U\quad\text{(SSH)},\qquad E=t\quad\text{(Holstein)},\qquad
+ a=\min\{1,(8\beta WE)^{-1}\},\quad \delta=e^{-aL/2}.
+\]
+Let $\Gamma_{ij,kl}=\langle c_i^\dagger c_j^\dagger c_l c_k\rangle$ on the ordered spin-orbital pairs $i<j$, $k<l$. For axial electron flux $\theta$, use $\theta/L$ per link and let $F_N(\theta)$ be the canonical free energy. A pair sees $2\theta$, so its helicity in this geometry is $\rho_x=L F_N''(0)/(4W)$.
+
+\begin{theorem}
+At every $\tau>0$, for all canonical sectors and all $\Omega>0$,
+\[
+ 0\le\Gamma,\qquad \|\Gamma\|\le8W^2\left(\frac{1+e^{-a/2}}{1-e^{-a/2}}\right)^2,
+ \qquad |\rho_x|\le\tau\frac{L}{W}\frac{\delta(1+\delta)}{(1-\delta)^3}
+ \quad(\delta\le1/9\text{ for the last bound}).
+\]
+Equal-time correlations of fixed-support fields of opposite nonzero charge in separated column intervals decay at least as a constant times $\exp(-a |q| r/2)$, with $q$ the charge of either field in absolute value and $r$ the cyclic column separation. In particular there is no extensive Yang eigenvalue or positive-temperature axial stiffness at fixed $W$. The axial helicity also vanishes along any family with $L/W\to\infty$ at fixed $t,U,\tau$.
+\end{theorem}
+
+Koma and Tasaki's electronic correlation bounds and the extension of Macris and Ruiz are direct predecessors of the complex-gauge step \cite{koma,macris}; Bogoliubov-inequality results for electronic pair order and low-dimensional geometries give complementary context \cite{su,gelfert}. Related arguments for spin order and for unbounded bosons have different observables and hypotheses \cite{loss,stachura}. The Holstein absence result is of the familiar density-coupled type. The point here is to handle the unbounded \emph{bond} hopping by its exact oscillator trace, control the full Yang matrix rather than a fixed pair separation, and bound the winding dependence of the free energy. These are scope distinctions, not a priority claim. The rate depends on $T$ and goes to zero as $T\downarrow0$; no zero-temperature assertion follows.
+
+\section{The pressure cost in the complex gauge}
+At real flux multiply the hopping on axial link $e$ by $s_e\ge1$. In SSH this scales its bare coefficient and oscillator force together. Since $\|B_e\|\le2$, the bare term contributes at most $2\beta t$ to $\partial_{s_e}\log Z$. For the SSH oscillator, the thermal harmonic path has periodic covariance $D$ for $b_e(u)$,
+\[
+ D(u,v)=\frac{U\Omega}{2}\frac{e^{-\Omega r}+e^{-\Omega(\beta-r)}}{1-e^{-\beta\Omega}},
+ \qquad r=|u-v|,\qquad \int_0^\beta D(u,v)\,dv=U.
+\]
+In the harmonic trace with time-ordered electronic evolution, differentiation inserts $-b_e(u)B_e$. Gaussian integration by parts inserts a second $-s_e B_e$ and gives the additional derivative
+\[
+ s_e\int_0^\beta\!du\int_0^\beta\!dv\ D(u,v)\langle\mathcal T B_e(u)B_e(v)\rangle.
+\]
+This is the full Gibbs expectation. The spin-summed insertion preserves the canonical sector; trace H\"older bounds the absolute two-time function by $\|B_e\|^2$. The Gaussian exponential moments of the integrated absolute field justify the differentiation at finite volume. It follows that the SSH pressure derivative is at most $2\beta t+4\beta U s_e$. The Holstein site force is not scaled, so its derivative has only the first term. In particular if $s_e=\cosh x_e$ and $|x_e|\le1$, integration yields
+\begin{equation}\label{eq:cost}
+ \log Z(s)-\log Z(1)\le 2\beta E\sum_e x_e^2.
+\end{equation}
+Here $\cosh x-1\le x^2$ and $\sinh^2 x\le2x^2$ on the stated interval.
+
+At finite oscillator cutoff, write the Hamiltonian with complex Peierls phase as $A+iC$, with $A,C$ self-adjoint. Its Hermitian part scales the real-phase hopping by $\cosh x_e$, where $x_e$ is the imaginary part of the phase. The Lie product formula and Schatten H\"older give
+\[
+ |\operatorname{Tr}(Oe^{-\beta(A+iC)})|\le\|O\|\operatorname{Tr}e^{-\beta A}.
+\]
+Indeed each factor $e^{-\beta A/n}e^{-i\beta C/n}$ has Schatten $n$ norm $(\operatorname{Tr}e^{-\beta A})^{1/n}$. Take increasing oscillator Fock subspaces. For real parameters the linear oscillator terms are infinitesimally form-bounded relative to $H_{\rm ph}$, giving $H\ge H_{\rm ph}/2-C_0$ at fixed volume. Rayleigh--Ritz on the Fock form core gives decreasing eigenvalue approximations and a summable lower-spectrum bound for heat traces. The cutoff heat semigroups converge strongly by the Ritz resolvent in form norm, then in trace norm by positivity and convergence of their traces. Thus real traces and bounded insertions converge; a compressed real heat trace is always at most the full one. Use the same full free-oscillator normalization throughout. No limit of a heat trace at complex flux is required.
+
+\section{A charge-transport bound for the full pair matrix}
+Let $q_x$ be the net insertion charge in column $x$ for one matrix element. The electronic similarity generated by $\sum_x\phi_x n_x$ multiplies the insertion by $e^{\sum_x q_x\phi_x}$ and produces the imaginary phase differences of the same $\phi$. The preceding comparison gives
+\begin{equation}\label{eq:insertion}
+ |\langle O\rangle|\le \|O\|\exp\left(\sum_x q_x\phi_x+2\beta WE\sum_x(\phi_x-\phi_{x+1})^2\right).
+\end{equation}
+Take integer cumulative charges $q_x=Q_x-Q_{x-1}$, choose the lower median entry $m$ of the sorted $Q_x$, and set $D_1=\sum_x|Q_x-m|$. Put $g_x=\operatorname{sign}(Q_x-m)$ off the median and choose one constant on the median set to make $\sum_x g_x=0$. If $p,n,z$ count entries above, below and equal to $m$, then $z\ge1$ and that constant is $-(p-n)/z$. Since $|p-n|\le z$, $|g_x|\le1$, $\sum_x g_x^2\le2D_1$, and $\sum_x Q_xg_x=D_1$. Set $\phi_x-\phi_{x+1}=-a g_x$. Summation by parts and the cost bound yield $|\langle O\rangle|\le\|O\|e^{-aD_1/2}$.
+
+On the circle, $D_1$ is the minimum total column distance of a matching between creator and annihilator labels: any matching generates an integer flow with divergence $q$, and such flows differ only by additive constants in $Q$, with $\ell^1$ cost minimized at the median. Conversely the minimizing flow $Q_x-m$ decomposes into directed paths from excess to deficit; it has no directed cycle because its nonzero entries cannot all have the same sign on the whole circle. The induced matching costs no more than its length. For two creator labels there are two matchings. Bound the exponential of the smaller cost by the sum of the two exponentials, then sum over all ordered annihilator labels. There are $2W$ spin orbitals in each column and at most two columns at each distance, giving the row-sum bound in the theorem. Hermiticity bounds the operator norm by this row sum. Positivity is the Gram property. Expanding local charge fields in monomials similarly bounds their correlation, since at least $|q|$ units must cross between their column supports.
+
+\section{Winding coefficients and helicity}
+At finite cutoff, $Z_R(\theta)$ is entire and $2\pi$-periodic by a unitary axial gauge. For Fourier coefficient $m\ne0$, shift the contour to imaginary part $-\operatorname{sign}(m)aL$. The comparison with a scaled real Hamiltonian and \eqref{eq:cost} bounds the coefficient after the cutoff limit by
+\[
+ |z_m|\le Z_{\max}\exp(2\beta EWL a^2-|m|aL)\le Z_{\max}\delta^{|m|},
+ \qquad Z_{\max}=\max_{\theta\text{ real}} Z(\theta).
+\]
+To pass to the limit only real trace convergence and dominated convergence in the Fourier integral are needed. Absolute convergence gives $\sup_\theta|Z(\theta)-z_0|\le2 Z_{\max}\delta/(1-\delta)$. Thus $Z(0)\ge Z_{\max}/2$ when $\delta\le1/9$. By time reversal $Z'(0)=0$ and
+\[
+ |Z''(0)|\le 2Z_{\max}\sum_{m\ge1}m^2\delta^m
+   = \frac{2Z_{\max}\delta(1+\delta)}{(1-\delta)^3}.
+\]
+This proves the helicity bound. Comparing to the maximum over real flux, rather than cutting a seam, is what allows $L/W\to\infty$.
+
+On a square $W=L$, these estimates do not yield an adiabatic threshold. In fact the intermediate Hermitian comparison cannot have a small coefficient in $\Omega$ in general. On an even isotropic square torus at zero flux, take Holstein filling $n=1/2$, $U\le t/4$ and $\tau\le t/64$. A dimer trial and free-energy concavity give $t\langle K_x\rangle/V>t/8$, where $K_x$ is the kinetic hopping summed over axial bonds. For the normalized canonical free energy $\mathcal F_N(t')$ as a function of bare hopping, compare the atomic bound $\mathcal F_N(0)\ge -UN-\tau V\log4$ with the dimer trial $\mathcal F_N(t)\le-tN$, then use axis-exchange symmetry. The per-site quadratic cost of $s=\cosh x$ at $x=0$ is $\beta t\langle K_x\rangle/(2V)>\beta t/16$, uniformly in $\Omega$. This cost is not the physical flux curvature. A cancellation involving the physical current, or another estimate, is needed to improve the square-lattice exponent.
+
+\section*{Supporting material}
+\noindent Article DOI: \href{\LINEARTHREEDOI}{\nolinkurl{doi.org/10.5281/zenodo.24369897}}
+\par\noindent Supplement DOI: \href{\LINEARTHREESUPPDOI}{\nolinkurl{doi.org/10.5281/zenodo.24369899}}
+\par\noindent Source repository: \href{\LINEARTHREEREPO}{\nolinkurl{github.com/SuperMatics-Inc/quasi1d-phonon-pair-decay}}
+
+{\raggedright\bibliographystyle{plain}\bibliography{refs}\par}
+\end{document}
